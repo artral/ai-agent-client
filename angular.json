@@ -58,6 +58,12 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "host": "localhost",
+            "port": 4200,
+            "proxyConfig": "proxy.conf.json"
+          },
+          
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
