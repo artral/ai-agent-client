@@ -1,0 +1,87 @@
+<!-- dashboard.component.html -->
+<div class="dashboard">
+  <h1>Dashboard</h1>
+
+  <div class="tile-grid">
+    <!-- Total Members -->
+    <div class="tile">
+      <div class="tile-icon">👥</div>
+      <div class="tile-content">
+        <span class="tile-label">Total Members</span>
+        <span class="tile-value">{{ totalMembers() }}</span>
+      </div>
+    </div>
+
+    <!-- Weather -->
+    <div class="tile">
+      <div class="tile-icon">☀️</div>
+      <div class="tile-content">
+        <span class="tile-label">{{ weather().location }}</span>
+        <span class="tile-value">{{ weather().temp }}°F</span>
+        <span class="tile-sub">{{ weather().condition }}</span>
+      </div>
+    </div>
+
+    <!-- Profile (editable) -->
+    <div class="tile profile-tile">
+      @if (isLoading()) {
+        <div class="tile-content">
+          <span class="tile-label">Profile</span>
+          <span class="tile-sub">Loading...</span>
+        </div>
+      } @else if (!isEditingProfile()) {
+        <div class="tile-icon">🧑</div>
+        <div class="tile-content">
+          <span class="tile-label">Profile</span>
+          <span class="tile-value">{{ profile().name }}</span>
+          <span class="tile-sub">{{ profile().role }} · {{ profile().memberId }}</span>
+        </div>
+        <button class="edit-btn" (click)="startEdit()">Edit</button>
+      } @else {
+        <div class="tile-content edit-mode">
+          <label>
+            Name
+            <input
+              type="text"
+              [ngModel]="editForm().name"
+              (ngModelChange)="updateField('name', $event)"
+            />
+          </label>
+          <label>
+            Role
+            <input
+              type="text"
+              [ngModel]="editForm().role"
+              (ngModelChange)="updateField('role', $event)"
+            />
+          </label>
+          <label>
+            Member ID
+            <input
+              type="text"
+              [ngModel]="editForm().memberId"
+              (ngModelChange)="updateField('memberId', $event)"
+            />
+          </label>
+
+          <div class="edit-actions">
+            <button (click)="saveEdit()" [disabled]="isSaving()">
+              {{ isSaving() ? 'Saving...' : 'Save' }}
+            </button>
+            <button (click)="cancelEdit()" [disabled]="isSaving()">Cancel</button>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Insurance Card -->
+    <div class="tile">
+      <div class="tile-icon">💳</div>
+      <div class="tile-content">
+        <span class="tile-label">Insurance</span>
+        <span class="tile-value">{{ insurance().planName }}</span>
+        <span class="tile-sub">{{ insurance().cardNumber }}</span>
+      </div>
+    </div>
+  </div>
+</div>

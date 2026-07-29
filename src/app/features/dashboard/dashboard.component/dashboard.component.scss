@@ -1,0 +1,65 @@
+// dashboard.component.scss (add to existing)
+.profile-tile {
+  position: relative;
+}
+
+.edit-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+  cursor: pointer;
+
+  &:hover {
+    background: #f0f0f0;
+  }
+}
+
+.edit-mode {
+  width: 100%;
+  gap: 0.5rem;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+    color: #666;
+    gap: 0.2rem;
+  }
+
+  input {
+    padding: 0.4rem 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+  }
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  button {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 0.85rem;
+
+    &:first-child {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}

@@ -9,27 +9,17 @@ export const routes: Routes = [
   { path: 'unauthorized', component: UnauthorizedComponent },
   {
     path: '',
-    canActivate: [authGuard],
+    
     children: [
       { 
         path: 'dashboard', 
-        //loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent) 
-      },
+        loadComponent: () => import('./features/dashboard/dashboard.component/dashboard.component').then(m => m.DashboardComponent) 
+        },
       { 
         path: 'member-eligibility', 
-        canActivate: [roleGuard(['PBM_Admin', 'Pharmacist'])],
-        //loadComponent: () => import('./features/member/member.component').then(m => m.MemberComponent) 
+        loadComponent: () => import('./features/member/member.component/member.component').then(m => m.MemberComponent) 
       },
-      { 
-        path: 'formulary', 
-        canActivate: [roleGuard(['PBM_Admin', 'Pharmacist', 'Patient'])],
-        //loadComponent: () => import('./features/formulary/formulary.component').then(m => m.FormularyComponent) 
-      },
-      { 
-        path: 'prior-auth', 
-        canActivate: [roleGuard(['PBM_Admin', 'Pharmacist'])],
-        //loadComponent: () => import('./features/prior-auth/prior-auth.component').then(m => m.PriorAuthComponent) 
-      },
+      
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
